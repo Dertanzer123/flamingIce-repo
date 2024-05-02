@@ -16,7 +16,8 @@ public class Game {
 
 	TextAttributes redback = new TextAttributes(Color.white, Color.RED);
 	TextAttributes blackback = new TextAttributes(Color.white, Color.black);
-
+	TextAttributes green =new TextAttributes(Color.green,Color.black);
+	
 	public enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard",75, 25,25,10);
 
 	Random rnd = new Random();
@@ -31,6 +32,8 @@ public class Game {
 	LinkedList Robots;
 
 	public Game() throws InterruptedException {
+		
+		Comrobot.comscore=0;
 		screen.readTxtFile();
 		map = screen.getMap();
 
@@ -85,21 +88,21 @@ public class Game {
 			if (keypr == 1) {
 
 				// if keyboard button pressed
-				if (rkey == KeyEvent.VK_LEFT && map[py][px - 1] != '#') {
+				if (rkey == KeyEvent.VK_LEFT ) {
 					player1.move(4, map);
 					
 				}
 
-				if (rkey == KeyEvent.VK_RIGHT && map[py][px + 1] != '#') {
+				if (rkey == KeyEvent.VK_RIGHT ) {
 					player1.move(2, map);
 					
 				}
 
-				if (rkey == KeyEvent.VK_UP && map[py - 1][px] != '#') {
+				if (rkey == KeyEvent.VK_UP ) {
 					player1.move(1, map);
 					
 				}
-				if (rkey == KeyEvent.VK_DOWN && map[py + 1][px] != '#') {
+				if (rkey == KeyEvent.VK_DOWN ) {
 					player1.move(3, map);
 					
 				}
@@ -120,6 +123,12 @@ public class Game {
 			threadSleep++;
 			cn.getTextWindow().setCursorPosition(65, 6);
 			System.out.println(time);
+			cn.getTextWindow().setCursorPosition(65,14);
+			System.out.println(Comrobot.comscore+"   ");
+			cn.getTextWindow().setCursorPosition(65,15);
+			System.out.println(Robots.Size()+"   ");
+			 
+			
 			if (threadSleep % 10 == 0) {
 				time++;
 			}
@@ -206,7 +215,26 @@ public class Game {
 		for (int i = 0; i < map.length; i++) {
 			cn.getTextWindow().setCursorPosition(0, i);
 			for (int j = 0; j < map[1].length; j++) {
-				cn.getTextWindow().output(map[i][j]);
+				if(map[i][j]=='#')
+				{
+					cn.setTextAttributes(green);
+					cn.getTextWindow().output('#');
+					cn.setTextAttributes(blackback);
+					
+					
+				
+				}
+				else if(map[i][j]=='C') 
+				{
+					cn.setTextAttributes(redback);
+					cn.getTextWindow().output('C');
+					cn.setTextAttributes(blackback);
+				}
+				else 
+				{
+					cn.getTextWindow().output(map[i][j]);	
+				}
+				
 			}
 		}
 	}

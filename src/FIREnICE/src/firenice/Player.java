@@ -22,31 +22,32 @@ public class player {
 		preposy=posy;
 	}
 	public void move(int direction,char[][] map)//1=up,2=right,3=down,4=left 
-	{
+	{	preposx=posx;
+		preposy=posy;
 		switch (direction) {
 		case 1:
 			if(map[posy-1][posx]!='#'&&map[posy-1][posx]!='C')
-			{preposy=posy;
+			{
 								
 				posy--;
 			}
 			break;
 		case 2:
 			if(map[posy][posx+1]!='#'&&map[posy][posx+1]!='C')
-			{preposx=posx;
+			{
 				posx++;
 			}
 			break;
 		case 3:
 			if(map[posy+1][posx]!='#'&&map[posy+1][posx]!='C')
-			{preposy=posy;
+			{
 				posy++;
 			}
 			break;
 		case 4:
 			if(map[posy][posx-1]!='#'&&map[posy][posx-1]!='C')
 			{
-				preposx=posx;
+				
 				posx--;
 			}
 			break;

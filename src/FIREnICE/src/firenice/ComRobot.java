@@ -10,12 +10,15 @@ public class Comrobot {
 	private int preposx;
 	private int preposy;// first index is always y
 	private int comlife;
+	
+	static  int comscore; 
 	public Comrobot(int posy, int posx) {
 		this.posx = posx;
 		this.posy = posy;
 		comlife=1000;
 		preposx=posx;
 		preposy=posy;
+		
 	}
 
 	public void move2Treusere(char[][] map) {
@@ -27,6 +30,7 @@ public class Comrobot {
 			case 0:
 				if(map[posy-1][posx]!='#'&&map[posy-1][posx]!='P'&&map[posy-1][posx]!='C')
 				{	
+					
 					posy--;
 				}
 				break;
@@ -77,6 +81,20 @@ public class Comrobot {
 			break;
 
 		}
+		
+		if(map[posy][posx]=='1') 
+		{
+			comscore+=9;
+		}
+		else if(map[posy][posx]=='2') 
+		{
+			comscore+=30;
+		}
+		else if(map[posy][posx]=='3') 
+		{
+			comscore+=90;
+		}
+		
 	}
 
 	public int desireddir(char[][] map) {//1 = up,2=right,3=down,4=left 0=random
